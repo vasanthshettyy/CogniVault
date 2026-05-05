@@ -70,6 +70,8 @@ class ImputedAction(BaseModel):
     status: Optional[str] = Field(None, description="Success/Fail status")
     details: Optional[str] = Field(None, description="Additional context or AI-generated details")
     is_imputed: bool = Field(default=False, description="True if this specific row was generated/filled by AI")
+    imputed_fields: List[str] = Field(default_factory=list, description="List of fields that were imputed")
+    field_logic: Dict[str, Dict[str, Any]] = Field(default_factory=dict, description="Granular reasoning per field")
     logic_path: Optional[str] = Field(None, description="The AI's reasoning for this step (if imputed)")
     confidence_score: float = Field(default=100.0, ge=0, le=100, description="Confidence in this step")
 
