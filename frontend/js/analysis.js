@@ -316,62 +316,64 @@ function renderPredictivePatterns(foresight) {
 }
 
 /**
- * Render the de-fragmented activity trace.
+ * Render the AI-Restored activity timeline.
  */
 function renderRestoredTimeline(imputedLog) {
-    const container = document.getElementById('restored-timeline');
+    const container = document.getElementById('restored-timeline-container');
     if (!container) return;
 
-    if (!imputedLog || imputedLog.length === 0) {
+    if (!imputedLog || !Array.isArray(imputedLog) || imputedLog.length === 0) {
         container.innerHTML = '<p class="text-muted">No reconstructed data log available.</p>';
         return;
     }
 
-    container.innerHTML = imputedLog.map((item, index) => {
+    const htmlRows = imputedLog.map((item, index) => {
         const fields = [];
-        // Metadata fields we don't want to show as data boxes
-        const ignoredFields = ['is_imputed', 'imputed_fields', 'field_logic', 'original_bits', 'predicted_completion', 'logic_path', 'confidence_score'];
-        
-        // Find the best field for the timestamp
+        const ignoredFields = ['is_imputed', 'imputed_fields', 'field_logic', 'logic_path', 'confidence_score'];
         const timeKeys = ['timestamp', 'time', 'date', 'created_at'];
+        
+        // 1. Extract Display Time safely
         let displayTime = `Step ${index + 1}`;
         for (const tk of timeKeys) {
             if (item[tk]) {
-                displayTime = item[tk];
+                const rawTime = item[tk];
+                // UNWRAP: If time is an object like {value: "...", is_missing: false}
+                if (typeof rawTime === 'object' && rawTime !== null && rawTime.value !== undefined) {
+                    displayTime = String(rawTime.value);
+                } else {
+                    displayTime = typeof rawTime === 'object' ? JSON.stringify(rawTime) : String(rawTime);
+                }
                 break;
             }
         }
 
-        // Render ALL other fields
-        const keysToRender = Object.keys(item).filter(k => !ignoredFields.includes(k) && !timeKeys.includes(k));
-        let highlightedSomething = false;
-
-        keysToRender.forEach((key, i) => {
-            const val = item[key];
-            if (val === null || val === undefined) return;
-
-            let isFieldImputed = item.imputed_fields && item.imputed_fields.includes(key);
+        // 2. Render Data Fields
+        Object.keys(item).forEach((key) => {
+            if (ignoredFields.includes(key) || timeKeys.includes(key)) return;
             
-            // Fallback: If row is imputed but no specific fields were listed, highlight the first field
-            if (item.is_imputed && (!item.imputed_fields || item.imputed_fields.length === 0) && !highlightedSomething) {
-                if (key === 'action' || key === 'event_type' || i === 0) {
-                    isFieldImputed = true;
-                }
+            let val = item[key];
+            if (val === null || val === undefined) return;
+            
+            // UNWRAP: If value is an object like {value: "...", is_missing: false}
+            if (typeof val === 'object' && val.value !== undefined) {
+                val = val.value;
             }
+            
+            // Still skip if it's a non-unwrappable object
+            if (typeof val === 'object' && val !== null) return;
 
+            const isFieldImputed = Array.isArray(item.imputed_fields) && item.imputed_fields.includes(key);
+            
             if (!isFieldImputed) {
-                // Observable data - Clean box
                 fields.push(`
                     <div class="restored-item-field">
                         <strong>${key}:</strong> ${escapeHtml(String(val))}
                     </div>
                 `);
             } else {
-                // Imputed data - Magic pulse highlight
-                highlightedSomething = true;
-                const metadata = item.field_logic ? item.field_logic[key] : null;
-                const confidence = metadata ? metadata.confidence : 70;
-                const logic = metadata ? metadata.logic : (item.logic_path || 'Inferred from behavioral patterns');
+                const metadata = (item.field_logic && item.field_logic[key]) ? item.field_logic[key] : null;
+                const confidence = (metadata && !isNaN(metadata.confidence)) ? Number(metadata.confidence) : 85;
+                const logic = metadata ? metadata.logic : (item.logic_path || 'Forensic pattern reconstruction');
                 const confClass = CogniAPI.getConfidenceClass(confidence);
 
                 fields.push(`
@@ -389,14 +391,17 @@ function renderRestoredTimeline(imputedLog) {
 
         return `
             <div class="restored-item animate-fadeIn">
-                <div class="restored-item-time">${escapeHtml(String(displayTime))}</div>
+                <div class="restored-item-time">${escapeHtml(displayTime)}</div>
                 <div class="restored-item-content">
                     ${fields.join('')}
                 </div>
             </div>
         `;
-    }).join('');
+    });
+
+    container.innerHTML = htmlRows.join('');
 }
+
 
 /**
  * Render score circles.
