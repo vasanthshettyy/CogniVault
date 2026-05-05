@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your CogniVault account to analyze your cognitive traces.">
+    <title>CogniVault - Sign In</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="auth-layout">
+        <!-- Decorative background elements -->
+        <div class="auth-decoration auth-decoration-1"></div>
+        <div class="auth-decoration auth-decoration-2"></div>
+
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <div class="auth-logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="auth-logo-text">Cogni<span style="color: var(--color-accent);">Vault</span></div>
+            </div>
+
+            <h1 class="auth-title">Welcome back</h1>
+            <p class="auth-subtitle">Sign in to continue analyzing cognitive traces</p>
+
+            <!-- Success message (shown after registration) -->
+            <div class="auth-success" id="login-success" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <span>Account created successfully! Please sign in.</span>
+            </div>
+
+            <!-- Error message -->
+            <div class="auth-error" id="login-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="login-error-text"></span>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" id="login-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="login-email">Email address</label>
+                    <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email" required>
+                    <span class="form-error" id="login-email-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Please enter a valid email address</span>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="login-password">Password</label>
+                    <div class="input-group">
+                        <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" required>
+                        <button type="button" class="input-toggle" id="toggle-password" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="form-error" id="login-password-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Password is required</span>
+                    </span>
+                </div>
+
+                <button type="submit" class="btn-primary" id="login-btn">
+                    <span class="btn-text">Sign In</span>
+                    <div class="spinner spinner-sm"></div>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="register.html">Create one here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

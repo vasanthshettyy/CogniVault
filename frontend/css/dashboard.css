@@ -1,0 +1,152 @@
+/* ============================================================
+   CogniVault - Dashboard Styles
+   Stats grid, chart card, recent files list
+   ============================================================ */
+
+/* Dashboard two-column grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* Chart card */
+.chart-card {
+  min-height: 360px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.chart-container canvas {
+  width: 100% !important;
+}
+
+/* Recent Files List */
+.recent-file-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: all var(--transition-fast);
+}
+
+.recent-file-item:last-child {
+  border-bottom: none;
+}
+
+.recent-file-item:hover {
+  padding-left: var(--space-2);
+}
+
+.recent-file-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.recent-file-icon.csv {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.recent-file-icon.pdf {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.recent-file-icon.xlsx {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.recent-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.recent-file-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-file-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: 2px;
+}
+
+.recent-file-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.recent-file-actions {
+  flex-shrink: 0;
+}
+
+/* Stat value animation counter */
+.stat-card-value {
+  transition: all var(--transition-slow);
+}
+
+/* Quick action buttons on stat cards */
+.stat-card-trend {
+  font-size: var(--font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.stat-card-trend.up {
+  color: var(--color-success);
+}
+
+.stat-card-trend.down {
+  color: var(--color-error);
+}
+
+/* Empty recent files */
+.recent-files-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+}
+
+.recent-files-empty i {
+  font-size: var(--font-size-3xl);
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.recent-files-empty p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your CogniVault account to start analyzing cognitive traces from activity logs.">
+    <title>CogniVault - Create Account</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="auth-layout">
+        <div class="auth-decoration auth-decoration-1"></div>
+        <div class="auth-decoration auth-decoration-2"></div>
+
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <div class="auth-logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="auth-logo-text">Cogni<span style="color: var(--color-accent);">Vault</span></div>
+            </div>
+
+            <h1 class="auth-title">Create your account</h1>
+            <p class="auth-subtitle">Start reconstructing reasoning from activity logs</p>
+
+            <!-- Error message -->
+            <div class="auth-error" id="reg-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="reg-error-text"></span>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="auth-form" id="register-form" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" placeholder="John Doe" autocomplete="name" required>
+                    <span class="form-error" id="reg-name-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Name must be 2-100 characters, no numbers</span>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Email address</label>
+                    <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email" required>
+                    <span class="form-error" id="reg-email-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Please enter a valid email address</span>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-password">Password</label>
+                    <div class="input-group">
+                        <input type="password" id="reg-password" placeholder="Minimum 8 characters" autocomplete="new-password" required>
+                        <button type="button" class="input-toggle" id="toggle-reg-password" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength" id="password-strength" data-strength="0">
+                        <div class="password-strength-bar"></div>
+                        <div class="password-strength-bar"></div>
+                        <div class="password-strength-bar"></div>
+                        <div class="password-strength-bar"></div>
+                    </div>
+                    <span class="form-error" id="reg-password-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Min 8 chars, 1 uppercase, 1 digit required</span>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-confirm-password">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" id="reg-confirm-password" placeholder="Re-enter your password" autocomplete="new-password" required>
+                        <button type="button" class="input-toggle" id="toggle-reg-confirm" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="form-error" id="reg-confirm-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Passwords do not match</span>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-gender">Gender <span class="text-muted">(optional)</span></label>
+                    <select id="reg-gender">
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer_not_to_say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary" id="register-btn">
+                    <span class="btn-text">Create Account</span>
+                    <div class="spinner spinner-sm"></div>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

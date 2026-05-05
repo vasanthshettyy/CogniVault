@@ -1,0 +1,299 @@
+/* ============================================================
+   CogniVault - Uploads Page Styles
+   Drop zone, file selection, progress bar, file list
+   ============================================================ */
+
+/* Upload Card */
+.upload-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Drop Zone ── */
+.drop-zone {
+  position: relative;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-16) var(--space-8);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  overflow: hidden;
+}
+
+.drop-zone:hover {
+  border-color: var(--color-accent);
+  background: rgba(124, 58, 237, 0.03);
+}
+
+.drop-zone.drag-active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+  border-style: solid;
+}
+
+.drop-zone.drag-active .drop-zone-content {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.drop-zone.drag-active .drop-zone-hover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.drop-zone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  transition: all var(--transition-base);
+}
+
+.drop-zone-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-xl);
+  background: var(--color-accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-3xl);
+  color: var(--color-accent);
+  transition: transform var(--transition-base);
+}
+
+.drop-zone:hover .drop-zone-icon {
+  transform: translateY(-4px);
+}
+
+.drop-zone-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.drop-zone-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.drop-zone-hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-accent);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  opacity: 0;
+  transition: all var(--transition-base);
+  pointer-events: none;
+}
+
+.drop-zone-hover i {
+  font-size: var(--font-size-3xl);
+  animation: bounceDown 1s ease infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ── Selected File Info ── */
+.selected-file {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  animation: fadeInUp 0.3s ease;
+}
+
+.selected-file-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.selected-file-icon.csv { background: var(--color-success-bg); color: var(--color-success); }
+.selected-file-icon.pdf { background: var(--color-error-bg); color: var(--color-error); }
+.selected-file-icon.xlsx { background: var(--color-info-bg); color: var(--color-info); }
+
+.selected-file-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.selected-file-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-file-size {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ── Upload Progress ── */
+.upload-progress {
+  animation: fadeIn 0.3s ease;
+}
+
+.upload-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.upload-progress-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.upload-progress-percent {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ── Upload Actions ── */
+.upload-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.upload-actions .btn-primary {
+  min-width: 220px;
+}
+
+/* ── Upload Status ── */
+.upload-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  animation: fadeInUp 0.3s ease;
+}
+
+.upload-status.success {
+  background: var(--color-success-bg);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+  color: var(--color-success);
+}
+
+.upload-status.error {
+  background: var(--color-error-bg);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+  color: var(--color-error);
+}
+
+/* ── Uploaded Files List ── */
+.upload-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: all var(--transition-fast);
+}
+
+.upload-list-item:last-child {
+  border-bottom: none;
+}
+
+.upload-list-item:hover {
+  padding-left: var(--space-2);
+}
+
+.upload-list-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.upload-list-icon.csv { background: var(--color-success-bg); color: var(--color-success); }
+.upload-list-icon.pdf { background: var(--color-error-bg); color: var(--color-error); }
+.upload-list-icon.xlsx { background: var(--color-info-bg); color: var(--color-info); }
+
+.upload-list-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.upload-list-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upload-list-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.upload-list-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.upload-list-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* Empty state for uploads list */
+.uploads-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+}
+
+.uploads-empty i {
+  font-size: var(--font-size-3xl);
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+.uploads-empty p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

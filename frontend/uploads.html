@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload activity logs to CogniVault for AI-powered cognitive trace analysis.">
+    <title>CogniVault - Uploads</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/uploads.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <a href="dashboard.html" class="sidebar-logo">
+                <div class="sidebar-logo-icon"><i class="fas fa-brain"></i></div>
+                <div class="sidebar-logo-text">Cogni<span>Vault</span></div>
+            </a>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Main</div>
+                <a href="dashboard.html" class="nav-item" id="nav-dashboard"><i class="fas fa-home"></i><span class="nav-item-text">Dashboard</span></a>
+                <a href="uploads.html" class="nav-item active" id="nav-uploads"><i class="fas fa-cloud-upload-alt"></i><span class="nav-item-text">Uploads</span></a>
+                <a href="analysis.html" class="nav-item" id="nav-analysis"><i class="fas fa-brain"></i><span class="nav-item-text">Analysis</span></a>
+                <a href="history.html" class="nav-item" id="nav-history"><i class="fas fa-history"></i><span class="nav-item-text">History</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar" id="user-avatar">?</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="user-name">Loading...</div>
+                        <div class="sidebar-user-email" id="user-email"></div>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-item-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i><span class="nav-item-text">Log Out</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <div class="page-header-row">
+                    <div>
+                        <h1 class="page-title">Uploads</h1>
+                        <p class="page-subtitle">Upload activity logs for cognitive trace analysis</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <section class="content-section">
+                <div class="card upload-card">
+                    <!-- Drop Zone -->
+                    <div class="drop-zone" id="drop-zone">
+                        <div class="drop-zone-content">
+                            <div class="drop-zone-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3 class="drop-zone-title">Drag and drop your file here</h3>
+                            <p class="drop-zone-subtitle">Supported formats: CSV, PDF, XLSX &bull; Max size: 10 MB</p>
+                            <button type="button" class="btn-secondary" id="browse-btn">
+                                <i class="fas fa-folder-open"></i> Browse Files
+                            </button>
+                            <input type="file" id="file-input" accept=".csv,.pdf,.xlsx" class="hidden">
+                        </div>
+                        <div class="drop-zone-hover">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>Drop file to upload</span>
+                        </div>
+                    </div>
+
+                    <!-- Selected File Info -->
+                    <div class="selected-file hidden" id="selected-file-info">
+                        <div class="selected-file-icon" id="selected-file-icon">
+                            <i class="fas fa-file"></i>
+                        </div>
+                        <div class="selected-file-details">
+                            <div class="selected-file-name" id="selected-file-name">filename.csv</div>
+                            <div class="selected-file-size" id="selected-file-size">1.2 MB</div>
+                        </div>
+                        <button class="btn-ghost" id="clear-file-btn" title="Remove file">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Upload Progress -->
+                    <div class="upload-progress hidden" id="upload-progress">
+                        <div class="upload-progress-header">
+                            <span class="upload-progress-label">Uploading...</span>
+                            <span class="upload-progress-percent" id="upload-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" id="upload-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Upload Button -->
+                    <div class="upload-actions" id="upload-actions">
+                        <button class="btn-primary btn-lg" id="upload-btn" disabled>
+                            <i class="fas fa-rocket"></i>
+                            <span class="btn-text">Upload and Analyze</span>
+                            <div class="spinner spinner-sm"></div>
+                        </button>
+                    </div>
+
+                    <!-- Upload Status -->
+                    <div class="upload-status hidden" id="upload-status"></div>
+                </div>
+            </section>
+
+            <!-- Uploaded Files List -->
+            <section class="content-section">
+                <div class="card">
+                    <div class="section-header">
+                        <h2 class="section-title">Your Files</h2>
+                        <span class="badge badge-neutral" id="files-count">0 files</span>
+                    </div>
+                    <div id="uploads-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/uploads.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CogniVault - AI-powered cognitive trace reconstruction from activity logs.">
+    <title>CogniVault - Cognitive Trace Reconstruction</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .landing-layout {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; min-height: 100vh; padding: var(--space-8);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .landing-layout::before {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); width: 900px; height: 900px;
+            background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .landing-hero { position: relative; z-index: 1; max-width: 640px; }
+        .landing-logo {
+            display: flex; align-items: center; justify-content: center;
+            gap: var(--space-4); margin-bottom: var(--space-8);
+        }
+        .landing-logo-icon {
+            width: 64px; height: 64px; background: var(--gradient-accent);
+            border-radius: var(--radius-xl); display: flex; align-items: center;
+            justify-content: center; color: #fff; font-size: var(--font-size-3xl);
+            box-shadow: var(--shadow-accent); animation: pulse 3s ease infinite;
+        }
+        .landing-logo-text {
+            font-size: var(--font-size-4xl); font-weight: 800;
+            background: linear-gradient(135deg, #e6edf3 0%, #7c3aed 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .landing-tagline {
+            font-size: var(--font-size-xl); color: var(--color-text-secondary);
+            margin-bottom: var(--space-4); line-height: 1.5;
+        }
+        .landing-description {
+            font-size: var(--font-size-base); color: var(--color-text-muted);
+            margin-bottom: var(--space-10); line-height: 1.7; max-width: 520px;
+            margin-left: auto; margin-right: auto;
+        }
+        .landing-cta { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+        .landing-cta .btn-primary { padding: var(--space-4) var(--space-8); font-size: var(--font-size-lg); }
+        .landing-cta .btn-secondary { padding: var(--space-4) var(--space-8); font-size: var(--font-size-lg); }
+        .landing-features {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6);
+            margin-top: var(--space-16); position: relative; z-index: 1; max-width: 800px;
+        }
+        .landing-feature {
+            background: var(--color-bg-card); border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg); padding: var(--space-6); text-align: center;
+            transition: all var(--transition-base);
+        }
+        .landing-feature:hover { border-color: var(--color-accent); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .landing-feature-icon {
+            width: 48px; height: 48px; border-radius: var(--radius-md);
+            background: var(--color-accent-light); display: flex; align-items: center;
+            justify-content: center; margin: 0 auto var(--space-4);
+            color: var(--color-accent); font-size: var(--font-size-xl);
+        }
+        .landing-feature h3 { font-size: var(--font-size-base); font-weight: 600; margin-bottom: var(--space-2); }
+        .landing-feature p { font-size: var(--font-size-sm); color: var(--color-text-muted); line-height: 1.5; }
+        @media (max-width: 768px) {
+            .landing-features { grid-template-columns: 1fr; }
+            .landing-logo-text { font-size: var(--font-size-3xl); }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-layout">
+        <div class="landing-hero animate-fadeInUp">
+            <div class="landing-logo">
+                <div class="landing-logo-icon"><i class="fas fa-brain"></i></div>
+                <div class="landing-logo-text">CogniVault</div>
+            </div>
+            <p class="landing-tagline">Reconstruct the reasoning behind every action</p>
+            <p class="landing-description">
+                Upload activity logs and let our AI reconstruct the hidden thought processes,
+                detect behavioral patterns, and flag reasoning inconsistencies — all powered by
+                a hybrid rule-based + LLM pipeline.
+            </p>
+            <div class="landing-cta">
+                <a href="login.html" class="btn-primary"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                <a href="register.html" class="btn-secondary"><i class="fas fa-user-plus"></i> Create Account</a>
+            </div>
+        </div>
+
+        <div class="landing-features animate-fadeInUp" style="animation-delay: 0.3s;">
+            <div class="landing-feature">
+                <div class="landing-feature-icon"><i class="fas fa-upload"></i></div>
+                <h3>Upload Logs</h3>
+                <p>CSV, PDF, or XLSX activity logs from any platform</p>
+            </div>
+            <div class="landing-feature">
+                <div class="landing-feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI Analysis</h3>
+                <p>Two-stage LangChain pipeline extracts patterns and infers reasoning</p>
+            </div>
+            <div class="landing-feature">
+                <div class="landing-feature-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Visual Results</h3>
+                <p>Interactive timelines, confidence scores, and consistency flags</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // If already logged in, redirect to dashboard
+        if (CogniAPI.getToken()) {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

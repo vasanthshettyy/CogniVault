@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+PyJWT
+python-multipart
+supabase
+pydantic
+pydantic-settings
+python-dotenv
+openpyxl
+PyPDF2
+httpx

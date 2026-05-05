@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CogniVault History - View all past cognitive trace analyses.">
+    <title>CogniVault - History</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <a href="dashboard.html" class="sidebar-logo">
+                <div class="sidebar-logo-icon"><i class="fas fa-brain"></i></div>
+                <div class="sidebar-logo-text">Cogni<span>Vault</span></div>
+            </a>
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Main</div>
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span class="nav-item-text">Dashboard</span></a>
+                <a href="uploads.html" class="nav-item"><i class="fas fa-cloud-upload-alt"></i><span class="nav-item-text">Uploads</span></a>
+                <a href="analysis.html" class="nav-item"><i class="fas fa-brain"></i><span class="nav-item-text">Analysis</span></a>
+                <a href="history.html" class="nav-item active"><i class="fas fa-history"></i><span class="nav-item-text">History</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar" id="user-avatar">?</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="user-name">Loading...</div>
+                        <div class="sidebar-user-email" id="user-email"></div>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-item-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i><span class="nav-item-text">Log Out</span></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <div class="page-header-row">
+                    <div>
+                        <h1 class="page-title">Analysis History</h1>
+                        <p class="page-subtitle">Browse and search all past cognitive trace analyses</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <section class="content-section">
+                <div class="card filter-bar">
+                    <div class="filter-row">
+                        <div class="filter-search">
+                            <i class="fas fa-search filter-search-icon"></i>
+                            <input type="text" id="history-search" placeholder="Search by file name..." class="filter-input">
+                        </div>
+                        <div class="filter-dates">
+                            <div class="filter-date-group">
+                                <label class="form-label" for="date-from">From</label>
+                                <input type="date" id="date-from" class="filter-date-input">
+                            </div>
+                            <div class="filter-date-group">
+                                <label class="form-label" for="date-to">To</label>
+                                <input type="date" id="date-to" class="filter-date-input">
+                            </div>
+                        </div>
+                        <button class="btn-secondary btn-sm" id="filter-btn">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                        <button class="btn-ghost btn-sm" id="clear-filter-btn">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Table -->
+            <section class="content-section">
+                <div class="card">
+                    <div class="section-header">
+                        <h2 class="section-title">Results</h2>
+                        <span class="badge badge-neutral" id="results-count">0 results</span>
+                    </div>
+                    <div class="table-wrapper" id="history-table-wrapper">
+                        <!-- Populated by JS -->
+                    </div>
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/history.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+timestamp,user_action,url,duration_seconds,page_title,category
+2025-05-01 09:00:12,page_visit,https://mail.google.com,45,Gmail - Inbox,email
+2025-05-01 09:01:02,click_link,https://mail.google.com/mail/u/0/#inbox/FMfcgz,12,Project Update Email,email
+2025-05-01 09:01:45,page_visit,https://docs.google.com/document/d/1abc,320,Q2 Marketing Strategy Draft,document
+2025-05-01 09:07:25,text_edit,https://docs.google.com/document/d/1abc,180,Q2 Marketing Strategy Draft,document
+2025-05-01 09:10:30,page_visit,https://www.google.com/search?q=social+media+engagement+statistics+2025,8,Google Search,search
+2025-05-01 09:10:42,page_visit,https://www.statista.com/statistics/social-media,95,Social Media Statistics 2025,research
+2025-05-01 09:12:22,copy_text,https://www.statista.com/statistics/social-media,5,Social Media Statistics 2025,research
+2025-05-01 09:12:30,tab_switch,https://docs.google.com/document/d/1abc,240,Q2 Marketing Strategy Draft,document
+2025-05-01 09:16:35,text_edit,https://docs.google.com/document/d/1abc,60,Q2 Marketing Strategy Draft,document
+2025-05-01 09:17:40,page_visit,https://www.google.com/search?q=competitor+analysis+framework,6,Google Search,search
+2025-05-01 09:17:50,page_visit,https://hbr.org/2024/competitive-analysis,140,HBR - Competitive Analysis Guide,research
+2025-05-01 09:20:15,bookmark,https://hbr.org/2024/competitive-analysis,3,HBR - Competitive Analysis Guide,research
+2025-05-01 09:20:20,tab_switch,https://docs.google.com/document/d/1abc,300,Q2 Marketing Strategy Draft,document
+2025-05-01 09:25:25,page_visit,https://mail.google.com,20,Gmail - Inbox,email
+2025-05-01 09:25:50,click_link,https://mail.google.com/mail/u/0/#inbox/FMfcgz2,8,Meeting Reminder: Strategy Review,email
+2025-05-01 09:26:02,page_visit,https://calendar.google.com,35,Google Calendar,productivity
+2025-05-01 09:26:40,page_visit,https://meet.google.com/abc-defg-hij,1800,Strategy Review Meeting,meeting
+2025-05-01 09:57:00,page_visit,https://slack.com/workspace/marketing,120,Slack - Marketing Channel,communication
+2025-05-01 09:59:05,send_message,https://slack.com/workspace/marketing,45,Slack - Marketing Channel,communication
+2025-05-01 10:00:00,tab_switch,https://docs.google.com/document/d/1abc,600,Q2 Marketing Strategy Draft,document
+2025-05-01 10:10:05,text_edit,https://docs.google.com/document/d/1abc,120,Q2 Marketing Strategy Draft,document
+2025-05-01 10:12:10,page_visit,https://analytics.google.com,180,Google Analytics Dashboard,analytics
+2025-05-01 10:15:15,download_file,https://analytics.google.com/export,10,Monthly Traffic Report.pdf,analytics
+2025-05-01 10:15:30,tab_switch,https://docs.google.com/document/d/1abc,480,Q2 Marketing Strategy Draft,document
+2025-05-01 10:23:35,page_visit,https://www.canva.com/design/abc,300,Canva - Infographic Design,design
+2025-05-01 10:28:40,download_file,https://www.canva.com/design/abc/download,8,Marketing_Infographic.png,design
+2025-05-01 10:28:52,tab_switch,https://docs.google.com/document/d/1abc,240,Q2 Marketing Strategy Draft,document
+2025-05-01 10:33:00,page_visit,https://drive.google.com,60,Google Drive,storage
+2025-05-01 10:34:05,upload_file,https://drive.google.com/upload,15,Q2_Strategy_Final.docx,storage
+2025-05-01 10:34:25,page_visit,https://mail.google.com,120,Gmail - Compose,email
+2025-05-01 10:36:30,send_email,https://mail.google.com,5,Gmail - Sent,email
+2025-05-01 10:36:40,page_visit,https://www.youtube.com/watch?v=xyz,900,TED Talk: Future of Digital Marketing,learning
+2025-05-01 10:51:45,page_visit,https://twitter.com/home,180,Twitter Feed,social_media
+2025-05-01 10:54:50,page_visit,https://www.linkedin.com/feed,240,LinkedIn Feed,social_media
+2025-05-01 10:58:55,page_visit,https://notion.so/workspace/tasks,60,Notion - Task Board,productivity
+2025-05-01 11:00:00,logout,https://accounts.google.com/signout,2,Google Sign Out,system

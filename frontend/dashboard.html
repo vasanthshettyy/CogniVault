@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CogniVault Dashboard - Overview of your cognitive trace analyses and activity.">
+    <title>CogniVault - Dashboard</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Sidebar Backdrop (mobile) -->
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <a href="dashboard.html" class="sidebar-logo">
+                <div class="sidebar-logo-icon"><i class="fas fa-brain"></i></div>
+                <div class="sidebar-logo-text">Cogni<span>Vault</span></div>
+            </a>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Main</div>
+                <a href="dashboard.html" class="nav-item active" id="nav-dashboard">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item-text">Dashboard</span>
+                </a>
+                <a href="uploads.html" class="nav-item" id="nav-uploads">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span class="nav-item-text">Uploads</span>
+                </a>
+                <a href="analysis.html" class="nav-item" id="nav-analysis">
+                    <i class="fas fa-brain"></i>
+                    <span class="nav-item-text">Analysis</span>
+                </a>
+                <a href="history.html" class="nav-item" id="nav-history">
+                    <i class="fas fa-history"></i>
+                    <span class="nav-item-text">History</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar" id="user-avatar">?</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="user-name">Loading...</div>
+                        <div class="sidebar-user-email" id="user-email"></div>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-item-logout" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item-text">Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-row">
+                    <div>
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-subtitle">Welcome back, <span id="greeting-name">User</span>. Here's your overview.</p>
+                    </div>
+                    <div class="page-actions">
+                        <a href="uploads.html" class="btn-primary">
+                            <i class="fas fa-plus"></i> New Upload
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <section class="content-section" id="stats-section">
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card stat-card-purple animate-fadeInUp delay-1">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon"><i class="fas fa-file-upload"></i></div>
+                        </div>
+                        <div class="stat-card-value" id="stat-total-uploads">—</div>
+                        <div class="stat-card-label">Total Uploads</div>
+                    </div>
+                    <div class="stat-card stat-card-blue animate-fadeInUp delay-2">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon"><i class="fas fa-brain"></i></div>
+                        </div>
+                        <div class="stat-card-value" id="stat-total-analyses">—</div>
+                        <div class="stat-card-label">Total Analyses</div>
+                    </div>
+                    <div class="stat-card stat-card-green animate-fadeInUp delay-3">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon"><i class="fas fa-chart-line"></i></div>
+                        </div>
+                        <div class="stat-card-value" id="stat-avg-score">—</div>
+                        <div class="stat-card-label">Avg. Performance</div>
+                    </div>
+                    <div class="stat-card stat-card-yellow animate-fadeInUp delay-4">
+                        <div class="stat-card-header">
+                            <div class="stat-card-icon"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                        <div class="stat-card-value" id="stat-consistency">—</div>
+                        <div class="stat-card-label">Consistency Rate</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Two Column: Chart + Recent Files -->
+            <div class="dashboard-grid">
+                <!-- Performance Chart -->
+                <section class="content-section">
+                    <div class="card chart-card">
+                        <div class="section-header">
+                            <h2 class="section-title">Performance Trend</h2>
+                            <span class="badge badge-accent">Last 7 analyses</span>
+                        </div>
+                        <div class="chart-container" id="chart-container">
+                            <canvas id="performance-chart" height="280"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Files -->
+                <section class="content-section">
+                    <div class="card">
+                        <div class="section-header">
+                            <h2 class="section-title">Recent Uploads</h2>
+                            <a href="uploads.html" class="btn-ghost btn-sm">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div id="recent-files">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

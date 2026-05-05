@@ -1,0 +1,110 @@
+/* ============================================================
+   CogniVault - Restoration & Imputation Styles
+   ============================================================ */
+
+@keyframes ghostly-pulse {
+    0% { background-color: rgba(124, 58, 237, 0.05); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.2); }
+    50% { background-color: rgba(124, 58, 237, 0.15); box-shadow: 0 0 10px 2px rgba(124, 58, 237, 0.1); }
+    100% { background-color: rgba(124, 58, 237, 0.05); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.2); }
+}
+
+.restored-field {
+    background: rgba(124, 58, 237, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 2px 6px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    animation: ghostly-pulse 2s infinite ease-in-out;
+    cursor: help;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: all 0.3s ease;
+}
+
+.restored-field i {
+    font-size: 0.75rem;
+    margin-right: 4px;
+    opacity: 0.8;
+}
+
+/* Confidence Glow */
+.restored-field[data-confidence="high"] {
+    border-color: rgba(63, 185, 80, 0.6);
+    box-shadow: 0 0 8px rgba(63, 185, 80, 0.3);
+}
+
+.restored-field[data-confidence="medium"] {
+    border-color: rgba(210, 153, 34, 0.6);
+    box-shadow: 0 0 8px rgba(210, 153, 34, 0.3);
+}
+
+.restored-field[data-confidence="low"] {
+    border-color: rgba(248, 81, 73, 0.6);
+    box-shadow: 0 0 8px rgba(248, 81, 73, 0.3);
+}
+
+.confidence-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    margin-left: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.confidence-badge.high { background: var(--color-success-bg); color: var(--color-success); }
+.confidence-badge.medium { background: var(--color-warning-bg); color: var(--color-warning); }
+.confidence-badge.low { background: var(--color-error-bg); color: var(--color-error); }
+
+.logic-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(30, 27, 75, 0.85); /* dark indigo */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    width: max-content;
+    max-width: 320px;
+    text-align: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(124, 58, 237, 0.5);
+    pointer-events: none;
+    line-height: 1.5;
+}
+
+.logic-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(30, 27, 75, 0.85) transparent transparent transparent;
+}
+
+.restored-field:hover {
+    box-shadow: 0 0 15px var(--color-accent);
+}
+
+.restored-field:hover .logic-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}

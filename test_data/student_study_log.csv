@@ -1,0 +1,29 @@
+timestamp,activity,resource,subject,duration_minutes,notes,focus_level
+2025-05-03 08:00:00,open_textbook,Chapter 7 - Neural Networks,Machine Learning,30,Started reading theory section,high
+2025-05-03 08:30:15,highlight_text,Chapter 7 - Neural Networks,Machine Learning,5,Highlighted backpropagation formula,high
+2025-05-03 08:35:30,watch_video,YouTube - 3Blue1Brown Neural Networks,Machine Learning,20,Visual explanation of gradient descent,high
+2025-05-03 08:55:45,take_notes,Notion - ML Study Notes,Machine Learning,15,Summarized key concepts from video,high
+2025-05-03 09:11:00,open_ide,Jupyter Notebook - nn_practice.ipynb,Machine Learning,0,Opened coding environment,medium
+2025-05-03 09:11:30,code_exercise,Jupyter Notebook - nn_practice.ipynb,Machine Learning,25,Implemented simple perceptron from scratch,high
+2025-05-03 09:36:45,run_code,Jupyter Notebook - nn_practice.ipynb,Machine Learning,5,Tested perceptron - accuracy 67%,medium
+2025-05-03 09:42:00,web_search,Google - why is my perceptron accuracy low,Machine Learning,8,Debugging low accuracy issue,medium
+2025-05-03 09:50:10,read_article,TowardsDataScience - Feature Scaling Guide,Machine Learning,12,Found issue: need to normalize input data,high
+2025-05-03 10:02:20,code_exercise,Jupyter Notebook - nn_practice.ipynb,Machine Learning,10,Added StandardScaler preprocessing,high
+2025-05-03 10:12:30,run_code,Jupyter Notebook - nn_practice.ipynb,Machine Learning,3,Retested - accuracy jumped to 91%,high
+2025-05-03 10:15:45,social_media,Instagram,Distraction,12,Checked notifications and scrolled feed,low
+2025-05-03 10:28:00,social_media,WhatsApp,Distraction,8,Replied to group messages,low
+2025-05-03 10:36:15,open_textbook,Chapter 8 - Convolutional Neural Networks,Machine Learning,25,Started CNN chapter,medium
+2025-05-03 11:01:30,watch_video,Coursera - Andrew Ng CNN Lecture,Machine Learning,35,Watched full lecture on convolution layers,high
+2025-05-03 11:36:45,take_notes,Notion - ML Study Notes,Machine Learning,15,Drew diagrams of CNN architecture,high
+2025-05-03 11:52:00,practice_quiz,Coursera - CNN Quiz,Machine Learning,20,Scored 8/10 on module quiz,high
+2025-05-03 12:12:15,break,Lunch,Break,45,Lunch break,low
+2025-05-03 12:57:30,open_textbook,Chapter 5 - Sorting Algorithms,Data Structures,20,Switched to DSA subject,medium
+2025-05-03 13:17:45,code_exercise,LeetCode - Problem #912 Sort Array,Data Structures,25,Implemented merge sort solution,high
+2025-05-03 13:43:00,code_exercise,LeetCode - Problem #215 Kth Largest,Data Structures,30,Used quickselect algorithm,high
+2025-05-03 14:13:15,code_exercise,LeetCode - Problem #56 Merge Intervals,Data Structures,35,Struggled with edge cases initially,medium
+2025-05-03 14:48:30,web_search,Google - merge intervals approach explanation,Data Structures,10,Looked up optimal approach,medium
+2025-05-03 14:58:45,code_exercise,LeetCode - Problem #56 Merge Intervals,Data Structures,15,Solved after understanding sorting approach,high
+2025-05-03 15:14:00,social_media,YouTube - random videos,Distraction,20,Got distracted watching recommended videos,low
+2025-05-03 15:34:15,review_notes,Notion - ML Study Notes,Machine Learning,20,Reviewed today's ML notes using spaced repetition,high
+2025-05-03 15:54:30,flashcards,Anki - ML Deck,Machine Learning,15,Reviewed 40 flashcards - 85% recall rate,high
+2025-05-03 16:09:45,plan_tomorrow,Notion - Study Planner,Planning,10,Set goals for tomorrow: RNN chapter + 3 LeetCode,high
