@@ -211,21 +211,17 @@ function renderAnalysisResult(container, data) {
  */
 function renderMetaStats(density) {
     const metaContainer = document.getElementById('analysis-meta-stats');
-    if (!metaContainer || density === undefined) return;
+    if (!metaContainer) return;
 
-    const densityClass = density > 40 ? 'high-density' : '';
+    // Fallback to 0 if density is undefined or null
+    const finalDensity = (density !== undefined && density !== null) ? Number(density) : 0.0;
+    const densityClass = finalDensity > 40 ? 'high-density' : 'low-density';
 
     metaContainer.innerHTML = `
-        <div class="meta-score-ring ${densityClass}">
-            <svg viewBox="0 0 48 48">
-                <circle class="meta-score-ring-bg" cx="24" cy="24" r="22"></circle>
-                <circle class="meta-score-ring-fill" id="meta-density-ring" cx="24" cy="24" r="22"></circle>
-            </svg>
-            <div class="meta-score-value">${Number(density).toFixed(1)}%</div>
-        </div>
-        <div class="meta-score-label">
-            <span class="meta-score-title">Missing Density</span>
-            <span class="meta-score-desc">Percentage of fragmented data bits</span>
+        <div class="density-badge ${densityClass} animate-fadeIn" style="opacity: 1 !important; visibility: visible !important; display: flex !important;">
+            <span class="density-dot"></span>
+            <span class="density-value">${finalDensity.toFixed(1)}%</span>
+            <span class="density-text">Missing Density</span>
         </div>
     `;
 }

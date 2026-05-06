@@ -8,7 +8,7 @@ let allHistory = [];
 /** @type {Array} Filtered history records */
 let filteredHistory = [];
 /** @type {string} Current sort column */
-let sortColumn = 'viewed_at';
+let sortColumn = 'created_at';
 /** @type {string} Current sort direction */
 let sortDirection = 'desc';
 /** @type {number} Current page */
@@ -65,6 +65,15 @@ function setupFilters() {
     const filterBtn = document.getElementById('filter-btn');
     const clearBtn = document.getElementById('clear-filter-btn');
 
+    // Category filter
+    const categorySelect = document.getElementById('history-category');
+    if (categorySelect) {
+        categorySelect.addEventListener('change', () => {
+            currentPage = 1;
+            applyFilters();
+        });
+    }
+
     // Live search on typing
     if (searchInput) {
         searchInput.addEventListener('input', debounce(() => {
@@ -85,6 +94,7 @@ function setupFilters() {
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
             if (searchInput) searchInput.value = '';
+            if (categorySelect) categorySelect.value = '';
             const dateFrom = document.getElementById('date-from');
             const dateTo = document.getElementById('date-to');
             if (dateFrom) dateFrom.value = '';
@@ -116,6 +126,7 @@ async function loadHistory() {
  */
 function applyFilters() {
     const searchTerm = (document.getElementById('history-search')?.value || '').trim().toLowerCase();
+    const category = document.getElementById('history-category')?.value || '';
     const dateFrom = document.getElementById('date-from')?.value || '';
     const dateTo = document.getElementById('date-to')?.value || '';
 
@@ -124,13 +135,17 @@ function applyFilters() {
         if (searchTerm && !item.file_name.toLowerCase().includes(searchTerm)) {
             return false;
         }
+        // Category filter
+        if (category && item.file_type.toLowerCase() !== category.toLowerCase()) {
+            return false;
+        }
         // Date range filter
         if (dateFrom) {
-            const itemDate = new Date(item.viewed_at).toISOString().split('T')[0];
+            const itemDate = new Date(item.created_at).toISOString().split('T')[0];
             if (itemDate < dateFrom) return false;
         }
         if (dateTo) {
-            const itemDate = new Date(item.viewed_at).toISOString().split('T')[0];
+            const itemDate = new Date(item.created_at).toISOString().split('T')[0];
             if (itemDate > dateTo) return false;
         }
         return true;
@@ -157,7 +172,7 @@ function sortData() {
         let valB = b[sortColumn];
 
         // Handle dates
-        if (sortColumn === 'viewed_at') {
+        if (sortColumn === 'created_at' || sortColumn === 'completed_at') {
             valA = new Date(valA || 0).getTime();
             valB = new Date(valB || 0).getTime();
         }
@@ -215,7 +230,7 @@ function renderTable() {
                     <th class="table-sno">#</th>
                     <th class="${sortClass('file_name')}" data-sort="file_name">File Name ${sortIcon('file_name')}</th>
                     <th data-sort="file_type">Type ${sortIcon('file_type')}</th>
-                    <th class="${sortClass('viewed_at')}" data-sort="viewed_at">Date ${sortIcon('viewed_at')}</th>
+                    <th class="${sortClass('created_at')}" data-sort="created_at">Date ${sortIcon('created_at')}</th>
                     <th class="${sortClass('confidence_score')}" data-sort="confidence_score">Confidence ${sortIcon('confidence_score')}</th>
                     <th class="${sortClass('performance_metric')}" data-sort="performance_metric">Performance ${sortIcon('performance_metric')}</th>
                     <th class="table-actions">Actions</th>
@@ -229,7 +244,7 @@ function renderTable() {
                             <a href="analysis.html?analysis_id=${item.analysis_id}">${escapeHtml(item.file_name)}</a>
                         </td>
                         <td><span class="badge ${CogniAPI.getFileTypeBadge(item.file_type)}">${item.file_type.toUpperCase()}</span></td>
-                        <td>${CogniAPI.formatDate(item.viewed_at)}</td>
+                        <td>${CogniAPI.formatDate(item.created_at)}</td>
                         <td class="table-score ${getScoreClass(item.confidence_score)}">${item.confidence_score ?? '—'}</td>
                         <td class="table-score ${getScoreClass(item.performance_metric)}">${item.performance_metric ?? '—'}</td>
                         <td class="table-actions">

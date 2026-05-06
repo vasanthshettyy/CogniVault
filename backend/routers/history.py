@@ -26,16 +26,14 @@ async def list_history(current_user: dict = Depends(verify_token)):
         supabase = get_supabase()
 
         # Query history with joined data
-        # Supabase supports foreign key joins via select syntax
         result = (
             supabase.table("history")
             .select(
-                "history_id, viewed_at, "
+                "history_id, "
                 "user_uploads(file_name, file_type), "
-                "ai_analyses(analysis_id, confidence_score, performance_metric)"
+                "ai_analyses(analysis_id, confidence_score, performance_metric, created_at)"
             )
             .eq("user_id", user_id)
-            .order("viewed_at", desc=True)
             .execute()
         )
 
@@ -44,6 +42,8 @@ async def list_history(current_user: dict = Depends(verify_token)):
         for record in (result.data or []):
             upload_data = record.get("user_uploads", {}) or {}
             analysis_data = record.get("ai_analyses", {}) or {}
+            # Use analysis creation time as the primary timestamp
+            created_at = analysis_data.get("created_at")
 
             history_records.append({
                 "history_id": record["history_id"],
@@ -52,8 +52,11 @@ async def list_history(current_user: dict = Depends(verify_token)):
                 "analysis_id": analysis_data.get("analysis_id", ""),
                 "confidence_score": analysis_data.get("confidence_score"),
                 "performance_metric": analysis_data.get("performance_metric"),
-                "viewed_at": record.get("viewed_at")
+                "created_at": created_at
             })
+        
+        # Sort by created_at DESC locally for final verification
+        history_records.sort(key=lambda x: x.get("created_at") or "", reverse=True)
 
         return {
             "status": "success",

@@ -73,6 +73,7 @@ def run_analysis_pipeline(analysis_id: str, user_id: str, upload_id: str):
             "status": "completed",
             "confidence_score": result.get("confidence_score"),
             "performance_metric": result.get("performance_metric"),
+            "missing_density": result.get("missing_density", 0.0),
             "reasoning_steps": result.get("reasoning_steps"),
             "consistency_flags": result.get("consistency_flags"),
             "raw_llm_response": json.dumps(result, default=str),
@@ -223,16 +224,10 @@ async def get_analysis_status(
             response_data.update({
                 "confidence_score": analysis.get("confidence_score"),
                 "performance_metric": analysis.get("performance_metric"),
+                "missing_density": missing_density,
                 "reasoning_steps": analysis.get("reasoning_steps"),
                 "consistency_flags": analysis.get("consistency_flags"),
                 "reconstructed_data_log": _extract_field(analysis, "reconstructed_data_log"),
-                "summary_stats": {
-                    "missing_density": missing_density
-                },
-                "summary": {
-                    "missing_density": missing_density
-                },
-                # Parse reconstructed_steps and detected_patterns from raw response
                 "reconstructed_steps": _extract_field(analysis, "reconstructed_steps"),
                 "detected_patterns": _extract_field(analysis, "detected_patterns"),
                 "predictive_foresight": _extract_field(analysis, "predictive_foresight"),

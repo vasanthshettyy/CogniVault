@@ -801,3 +801,55 @@ input:checked + .slider:before {
     left: calc(-1 * var(--space-8) + 8px);
   }
 }
+
+/* -- Forensic Meta Stats & Toggle -- */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--color-bg-card);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.density-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    background: rgba(165, 180, 252, 0.1);
+    border: 1px solid rgba(165, 180, 252, 0.2);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    margin-right: var(--space-2);
+}
+
+.density-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 8px var(--color-accent);
+}
+
+.density-badge.high-density .density-dot {
+    background: #f87171;
+    box-shadow: 0 0 8px #f87171;
+}
+
+.density-badge.high-density {
+    background: rgba(248, 113, 113, 0.1);
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+.density-value {
+    font-weight: 700;
+    color: var(--color-text-primary);
+}
+
+.density-text {
+    opacity: 0.7;
+    font-weight: 500;
+}

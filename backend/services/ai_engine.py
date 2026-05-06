@@ -151,6 +151,14 @@ Return ONLY valid JSON matching this schema:
     if not parsed_json.get("predictive_foresight"):
         parsed_json["predictive_foresight"] = stage1_json.get("predictive_foresight", [])
 
+    # Calculate actual missing density based on imputed fields
+    total_fields = len(entries) * len(summary_meta.get("fields", [])) if entries and summary_meta.get("fields") else 1
+    imputed_count = 0
+    for row in parsed_json.get("reconstructed_data_log", []):
+        imputed_count += len(row.get("imputed_fields", []))
+    
+    parsed_json["missing_density"] = (imputed_count / total_fields) * 100 if total_fields > 0 else 0.0
+
     return parsed_json
 
 def reconstruct_reasoning_with_retry(clean_data: Dict[str, Any], max_retries: int = 2, base_delay: float = 2.0) -> Dict[str, Any]:
